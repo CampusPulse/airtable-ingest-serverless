@@ -1,7 +1,7 @@
 {
-  "repository": "https://github.com/vercel/examples.git",
+  "repository": "https://github.com/CampusPulse/airtable-ingest-serverless.git",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@types/node": "^17.0.42",
     "@vercel/node": "^2.9.6",
