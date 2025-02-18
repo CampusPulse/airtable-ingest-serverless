@@ -11,8 +11,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const data = new URLSearchParams(req.body);
   try {
-    const { name, email, building, floor, description, room, email_optin } = req.body;
+    const { name, email, building, floor, description, room, email_optin } = Object.fromEntries(data);
     if (!building || !floor || !description) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
