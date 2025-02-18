@@ -20,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const createdRecord = await base(TABLE_NAME).create([
       {
-        fields: { name, email, building, floor, description, room, email_optin },
+        fields: { name, email, building, floor, description, room, email_optin: email_optin === "true" },
       },
     ]);
 
