@@ -24,7 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     ]);
 
-    return res.redirect(307, process.env.REDIRECT_SUCCESS_ROUTE);
+    return res.redirect(302, process.env.REDIRECT_SUCCESS_ROUTE);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
