@@ -8,6 +8,7 @@
     "typescript": "^4.7.3"
   },
   "dependencies": {
-    "airtable": "^0.12.2"
+    "airtable": "^0.12.2",
+    "uploadthing": "^7.5.2"
   }
 }
