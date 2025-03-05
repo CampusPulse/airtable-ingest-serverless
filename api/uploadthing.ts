@@ -20,6 +20,10 @@ export const uploadRouter = {
     },
   }).onUploadComplete((data) => {
     console.log("upload completed", data);
+    return {
+      name: data.file.name,
+      url: data.file.ufsUrl
+    }
   }),
 } satisfies FileRouter;
 
