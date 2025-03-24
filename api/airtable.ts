@@ -13,14 +13,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const data = new URLSearchParams(req.body);
   try {
-    const { name, email, building, floor, description, room, email_optin } = Object.fromEntries(data);
+    const { name, email, building, floor, type, description, room, email_optin } = Object.fromEntries(data);
     if (!building || !floor || !description) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
     const createdRecord = await base(TABLE_NAME).create([
       {
-        fields: { name, email, building, floor, description, room, email_optin: email_optin === "true" },
+        fields: { name, email, building, floor, type, description, room, email_optin: email_optin === "true" },
       },
     ]);
 
