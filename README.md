@@ -29,3 +29,16 @@ Then run the app at the root of the repository:
 ```bash
 vercel dev
 ```
+
+
+
+## Environment Variables
+
+AIRTABLE_API_KEY
+AIRTABLE_BASE_ID
+AIRTABLE_TABLE_NAME
+UPLOADTHING_TOKEN
+REDIRECT_SUCCESS_ROUTE
+DISCORD_WEBHOOK_URL
+DISCORD_PING_ROLE
+FIREHOSE_DISCORD_WEBHOOK_URL
