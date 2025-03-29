@@ -14,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const data = new URLSearchParams(req.body);
   try {
     const { name, email, building, floor, type, description, room, email_optin } = Object.fromEntries(data);
-    if (!building || !floor || !description) {
+    if (!building || (type == "door button" && !floor) || !description) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
