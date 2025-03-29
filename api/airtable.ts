@@ -23,6 +23,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         fields: { name, email, building, floor, type, description, room, email_optin: email_optin === "true" },
       },
     ]);
+    
+    if (type == "elevator") {
+      
+      const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
+
+      if (discordWebhook != undefined && discordWebhook != "") {
+        
+        // Discord expects a JSON payload that looks like this { content: 'hello world'}
+        const content = { "content": `${process.env.DISCORD_PING_ROLE ?? ""} THIS IS A TEST. A new elevator report has been filed:\n**Building**: ${building}\n**Location Description**: ${room}\n**Description**: ${description}\n\nThis automated message was generated because a report was filed at https://report.campuspulse.app` }
+        await fetch(discordWebhook, {
+          body: JSON.stringify(content),
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        })
+      }
+
+    }
+    
 
     return res.redirect(302, process.env.REDIRECT_SUCCESS_ROUTE);
   } catch (error) {
