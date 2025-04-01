@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     ]);
 
-    const webhookMessage = `THIS IS A TEST. A new ${type} report has been filed:\n**Building**: ${building}\n**Location Description**: ${room}\n**Description**: ${description}\n\nThis automated message was generated because a report was filed at https://report.campuspulse.app`
+    const webhookMessage = `A new ${type} report has been filed:\n**Building**: ${building}\n**Location Description**: ${room}\n**Description**: ${description}\n\nThis automated message was generated because a report was filed at https://report.campuspulse.app`
 
     if (type == "elevator") {
       let pingRole = process.env.DISCORD_PING_ROLE ?? ""
