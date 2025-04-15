@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const data = new URLSearchParams(req.body);
   try {
-    const { name, email, building, floor, type, description, room, email_optin } = Object.fromEntries(data);
+    const { name, email, building, floor, type, description, room, email_optin, campuspulse_id } = Object.fromEntries(data);
     if (!building || (type == "door button" && !floor) || !description) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
@@ -38,7 +38,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     ]);
 
-    const webhookMessage = `A new ${type} report has been filed:\n**Building**: ${building}\n**Location Description**: ${room}\n**Description**: ${description}\n\nThis automated message was generated because a report was filed at https://report.campuspulse.app`
+    let webhookMessage = `A new ${type} report has been filed:\n**Building**: ${building}\n**Location Description**: ${room}\n**Description**: ${description}\n`
+
+    const campuspulse_id_val = parseInt(campuspulse_id, 10);
+    if (!isNaN(campuspulse_id_val)) {
+      webhookMessage += `**Catalog URL:** https://access.campuspulse.app/access_points/${campuspulse_id}\n`
+    }
+
+    webhookMessage += `\nThis automated message was generated because a report was filed through the catalog or the [reporting form](https://report.campuspulse.app). It will be verified and filed to FMS soon by our team.`
 
     if (type == "elevator") {
       let pingRole = process.env.DISCORD_PING_ROLE ?? ""
