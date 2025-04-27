@@ -52,10 +52,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (pingRole != "") {
         pingRole += " "
       }
-      // await sendDiscordWebhook(process.env.DISCORD_WEBHOOK_URL ?? "", pingRole + webhookMessage)
+      await sendDiscordWebhook(process.env.DISCORD_WEBHOOK_URL ?? "", pingRole + webhookMessage)
     }   
 
-    // await sendDiscordWebhook(process.env.FIREHOSE_DISCORD_WEBHOOK_URL ?? "", webhookMessage)
+    await sendDiscordWebhook(process.env.FIREHOSE_DISCORD_WEBHOOK_URL ?? "", webhookMessage)
     
 
     return res.redirect(302, process.env.REDIRECT_SUCCESS_ROUTE);
