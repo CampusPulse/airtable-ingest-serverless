@@ -21,9 +21,11 @@ function isSpamOrTest(text: string): boolean {
   }
 
   // 2. High entropy / Gibberish detection
-  // Checks for "words" longer than 25 characters (English max is usually ~21)
+  // Checks for "words" longer than 22 characters (English max is usually ~21)
+  // Wikipedia: According to Eckler, the longest words likely to be encountered in general text are deinstitutionalisation (or deinstitutionalization) and counterrevolutionaries, with 22 letters each.[17]
+  // A computer study of over a million samples of normal English prose found that the longest word one is likely to encounter on an everyday basis is uncharacteristically, at 20 letters.[18]
   const words = text.split(/\s+/);
-  const hasLongNonsenseWord = words.some((word) => word.length > 25);
+  const hasLongNonsenseWord = words.some((word) => word.length > 22);
   if (hasLongNonsenseWord) {
     return true;
   }
